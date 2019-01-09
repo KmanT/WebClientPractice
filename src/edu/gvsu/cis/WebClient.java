@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
+//import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+import javafx.scene.control.TextArea;
 
 public class WebClient {
 	
@@ -26,10 +26,10 @@ public class WebClient {
 		this.portNumber = portNumber;
 	}
 	
-	public void connectClient(String input) {
+	public void connectClient(String input, TextArea txt) {
 		try {
 			startConnection();
-			printInput(input);
+			printInput(input, txt);
 			closeEverything();
 		} catch (IOException ioE) {
 			ioE.printStackTrace();
@@ -43,17 +43,15 @@ public class WebClient {
 					new InputStreamReader(clientSocket.getInputStream()));
 	}
 	
-	private void printInput(String input) throws IOException{
-		//while (input != null) {
-			out.println("GET " + input + " HTTP/1.0\r\n\r\n");
-			out.flush();
-			
-			while (in.readLine() != null) {
-				System.out.println(in.readLine());
-			}
-			
-		//}
-		
+	private void printInput(String input, TextArea txt) throws IOException{
+		String text = "";
+		out.println("GET " + input + " HTTP/1.0\r\n\r\n");
+		out.flush();
+		while (in.readLine() != null) {
+			//System.out.println(in.readLine());
+			text += in.readLine() + "\n";
+		}
+		txt.setText(text);
 	}
 	private void closeEverything() throws IOException{
 		in.close();
