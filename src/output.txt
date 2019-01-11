@@ -1,0 +1,13 @@
+GET output.txt HTTP/1.0
+
+Server: SimpleHTTP/0.6 Python/3.6.3
+Connection: close
+Content-Length: 469
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+<html>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    </head>
+        <h1>Error response</h1>
+        <p>Message: File not found.</p>
+    </body>
+null
